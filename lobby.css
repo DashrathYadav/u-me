@@ -1,0 +1,71 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: black;
+
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+}
+
+input{
+    width: 100%;
+    padding: 5%;
+    margin: 10%;
+    font-size: large;
+    border-radius: 5px;
+    font-family: cursive;
+    
+
+}
+
+button{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border:none;
+    
+
+    
+}
+#call{
+    width: 30px;
+    
+}
+
+spam{
+    position: fixed;
+    font-family:cursive;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    font-size: large    ;
+
+}
+/* #join{
+
+    top:20%;
+    right:50%;
+
+} */
+#create{
+
+    top:30%;
+    right:46%;
+
+}

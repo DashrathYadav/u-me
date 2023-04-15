@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" media="screen" href="main.css">
+
+    <!-- <a href="https://www.flaticon.com/free-icons/microphone" title="microphone icons">Microphone icons created by Kiranshastry - Flaticon</a> -->
+
+</head>
+
+<body>
+
+    <div  id="mainFrame" class="videoplayer ">
+        <video id="user-1" class="singleUser"   autoplay style="transform: scaleX(-1)"></video>
+        <video id="user-2" class="singleUser" muted autoplay  style="transform: scaleX(-1)"></video>
+    </div>
+    <div class="controls">
+
+        <div class="controler">
+            <div class="icon_back " id="mycamera_icon">
+                <img id="mycamera" class="icon-options" src="./icons/video-camera.png" alt="video">
+            </div>
+            <div class="icon_back" id="mic_icon">
+                <img id="mymicroPhone" class="icon-options " src="./icons/microphone (1).png" alt="video">
+            </div>
+        
+            <div class="icon_back " id="audio_icon" style="background:rgb(255,80,80);">
+                <img id="audio" class="icon-options" src="./icons/speaker-filled-audio-tool.png" alt="video">
+            </div>
+            <a href="./Call.html">
+            <div class="icon_back callend">
+                <img id="endCall" class="icon-options" src="./icons/phone.png" alt="video">
+            </div>
+            </a>
+        </div>
+    </div>
+    <script src="agora-rtm-sdk-1.5.1.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

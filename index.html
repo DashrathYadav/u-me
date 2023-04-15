@@ -4,17 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
-    <link rel="stylesheet" media="screen" href="main.css">
+    <link rel="stylesheet" href="lobby.css">
+    <title>lobby</title>
 </head>
 <body>
-    
-<div class="videoplayer">
-    <video  id="user-1"  controls autoplay ></video> 
-    <video  id="user-2" controls autoplay ></video>
-</div>
 
-    <script src="agora-rtm-sdk-1.5.1.js"></script>
-    <script src="main.js"></script>
+
+    <div >
+        <!-- <spam id="join">  Join CALL   </spam> -->
+        <spam id="create"> Join / Create</spam>
+    </div>
+    <form action="" id="form" class="form">
+
+        <input id="search_bar" type="text" name="inviteCode" placeholder="Call No." autofocus="true" autocomplete="off" required> 
+        <button type="submit"><img id="call" src="./icons/phone.png" alt="call img"> </button>
+
+    </form>
+
+    <script>
+
+        const form=document.getElementById("form");
+        form.onsubmit=(e)=>{
+            e.preventDefault();
+            const inviteCode=form.inviteCode.value;
+            window.location.assign(`Call.html?roomId=${inviteCode}`);
+            console.log(inviteCode);
+        }
+
+    </script>
+    
 </body>
 </html>
