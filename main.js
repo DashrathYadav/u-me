@@ -10,7 +10,7 @@ if (!roomId) {
 // console.log(typeof (roomId))
 
 
-const APP_ID = '37d72934083d487abdcb43cdddc5259d'
+const APP_ID = ""
 const user_id = (Math.floor(Math.random() * 1000000)).toString();
 // console.log(user_id, typeof (user_id));
 let client;
@@ -41,8 +41,34 @@ video2.classList.remove("smallFrame");
 // --------------------------
 
 
-const iceconfig = { 'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] }
-
+// const iceconfig = { 'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] }
+let iceconfig = {
+    iceServers: [
+      {urls: 'stun:stun.l.google.com:19302'},
+    ]
+}
+//     sdpSemantics: 'unified-plan',
+//     video: {
+//       codec: 'H265',
+//       bitrate: 1000, // Set the desired bitrate in kbps
+//       width: 1280,
+//       height: 720,
+//       framerate: 30,
+//       parameters: {
+//         'profile-level-id': '42e01f', // Set the desired profile level ID
+//         'level-asymmetry-allowed': 1,
+//         'packetization-mode': 1
+//       }
+//     }
+//   };
+  
+//   let peerConnection = new RTCPeerConnection(configuration);
+  
+  
+//   let pc = new RTCPeerConnection(configuration);
+  
+//   let pc = new RTCPeerConnection(config);
+  
 
 //retur stream     sets video stream of user and  return stream
 async function inputStream() {
@@ -153,7 +179,31 @@ MemberId=memberId
    
     
     const offer = await peer.createOffer();
+
     peer.setLocalDescription(offer);
+
+    const sdpLines = localDescription.sdp.split('\r\n');
+let videoMLineIndex = -1;
+
+sdpLines.forEach((line, index) => {
+  if (line.startsWith('m=video')) {
+    videoMLineIndex = index;
+  }
+});
+
+if (videoMLineIndex === -1) {
+  console.error('No video m-line found in SDP');
+  return;
+}
+
+sdpLines.splice(videoMLineIndex + 1, 0, 'b=AS:5000');
+
+const newSDP = sdpLines.join('\r\n');
+await peerConnection.setLocalDescription(new RTCSessionDescription({
+  type: localDescription.type,
+  sdp: newSDP
+}));
+
     // console.log("offer set");
     // console.log("my sdp ", offer);
     await client.sendMessageToPeer(
