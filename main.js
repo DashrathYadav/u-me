@@ -10,7 +10,7 @@ if (!roomId) {
 // console.log(typeof (roomId))
 
 
-const APP_ID = ""
+const APP_ID = "33cc784d60a044419654fb014dcfcec6"
 const user_id = (Math.floor(Math.random() * 1000000)).toString();
 // console.log(user_id, typeof (user_id));
 let client;
@@ -41,12 +41,13 @@ video2.classList.remove("smallFrame");
 // --------------------------
 
 
-// const iceconfig = { 'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] }
-let iceconfig = {
-    iceServers: [
-      {urls: 'stun:stun.l.google.com:19302'},
-    ]
-}
+const iceconfig = { 'iceServers': [{ 'urls': 'stun:stun.l.google.com:19302' }] }
+
+// let iceconfig = {
+//     iceServers: [
+//       {urls: 'stun:stun.l.google.com:19302'},
+//     ]
+// }
 //     sdpSemantics: 'unified-plan',
 //     video: {
 //       codec: 'H265',
@@ -182,27 +183,6 @@ MemberId=memberId
 
     peer.setLocalDescription(offer);
 
-    const sdpLines = localDescription.sdp.split('\r\n');
-let videoMLineIndex = -1;
-
-sdpLines.forEach((line, index) => {
-  if (line.startsWith('m=video')) {
-    videoMLineIndex = index;
-  }
-});
-
-if (videoMLineIndex === -1) {
-  console.error('No video m-line found in SDP');
-  return;
-}
-
-sdpLines.splice(videoMLineIndex + 1, 0, 'b=AS:5000');
-
-const newSDP = sdpLines.join('\r\n');
-await peerConnection.setLocalDescription(new RTCSessionDescription({
-  type: localDescription.type,
-  sdp: newSDP
-}));
 
     // console.log("offer set");
     // console.log("my sdp ", offer);
